@@ -7,6 +7,7 @@ const PORT = 4000;
 
 //setup graphql middleware with graphiql
 app.use("/graphql", expressGraphQL({
+    schema,
     graphiql: true,
 }));
 

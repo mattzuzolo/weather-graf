@@ -3,20 +3,25 @@ const UserType = require("./user_type");
 
 const { 
   GraphQLObjectType,
+  GraphQLList,
   GraphQLString,
-  GraphQLID,
 } = graphql;
 
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
+    users: {
+      type: new GraphQLList(UserType),
+      resolve() {
+        return User.find({});
+      }
+    },
     user: {
       type: UserType,
       args: { id: { type: GraphQLString } },
       resolve(parentValue, args){
-        return fetch(`http://localhost:3000/users/${args.id}`)
-          .then(response => response.json());
+        return Song.findById(id);
       }
     }
   }

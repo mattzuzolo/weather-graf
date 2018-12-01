@@ -18,12 +18,13 @@ const mutation = new GraphQLObjectType({
         location: { type: GraphQLString },
       },
       resolve(parentValue, args){
-        console.log("POSTING...", args);
+        console.log("About to POST:", args);
         return fetch("http://localhost:4000/users", configureAddUser(args))
           .then(response => response.json())
-          .then(console.log)
+          .then(data => console.log("Resolved data:", data))
+          .catch(console.error)
       }
-    }
+    },
   }
 })
 

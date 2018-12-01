@@ -8,14 +8,14 @@ const {
 } = graphql;
 
 
-const RootQueryType = new GraphQLObjectType({
+const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     user: {
       type: UserType,
       args: { id: { type: GraphQLString } },
       resolve(parentValue, args){
-        return Song.findById(id);
+        return User.findById(id);
       }
     },
     users: {
@@ -27,4 +27,4 @@ const RootQueryType = new GraphQLObjectType({
   }
 })
 
-module.exports = RootQueryType
+module.exports = RootQuery;

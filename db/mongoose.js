@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
-mongoose.Promise = global.Promise;
+console.log("INSIDE db/MONGOOSE.JS...")
 
 const MONGO_URI = "mongodb://matt:password1@ds029801.mlab.com:29801/weather-graf";
+
+mongoose.Promise = global.Promise;
 
 mongoose.connect(MONGO_URI);
 mongoose.connection

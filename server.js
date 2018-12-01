@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("./db/mongoose");
 const User = require("./models/user")
 const express = require("express");
 const expressGraphQL = require("express-graphql");

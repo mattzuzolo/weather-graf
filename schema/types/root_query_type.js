@@ -12,13 +12,6 @@ const UserType = require("./user_type");
 //Models
 const User = mongoose.model("user");
 
-//test data
-const testUsers = [
-  { id: "23", username: "Matt", location: "Lower East Side" },
-  { id: "152", username: "Marc", location: "Midtown" }
-];
-
-
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {

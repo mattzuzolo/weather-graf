@@ -40,8 +40,3 @@ const RootQuery = new GraphQLObjectType({
 })
 
 module.exports = RootQuery;
-
-
-    // let foundUser = testUsers.find(user => args.id === user.id);
-        // return foundUser;
-        // return User.findById(id);

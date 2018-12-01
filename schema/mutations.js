@@ -1,6 +1,8 @@
+const mongoose = require("mongoose");
 const graphql = require("graphql");
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 
+const User = mongoose.model("user");
 const UserType = require("./types/user_type");
 
 const { 
@@ -18,28 +20,28 @@ const mutation = new GraphQLObjectType({
         location: { type: GraphQLString },
       },
       resolve(parentValue, args){
-        console.log("About to POST:", args);
-        return fetch("http://localhost:4000/users", configureAddUser(args))
-          .then(response => response.json())
-          .then(data => console.log("Resolved data:", data))
-          .catch(console.error)
+        let user = new User(args);
+        console.log("NEW USER INSTANCE TO SAVE", user);
+        user.save()
+          .then(console.log("SUCCESS"))
+          .catch(error => console.log("FAILURE!", error));
       }
     },
   }
 })
 
-function configureAddUser(args){
-  console.log("Configuring POST request...")
-  let config = {
-    Accept: "application/json",
-    method: "POST",
-    headers: {
-      "Content-type": "application/json"
-    },
-    body: JSON.stringify(args)
-  };
-  console.log("CONFIG: ", config);
-  return config;
-}
+// function configureAddUser(args){
+//   console.log("Configuring POST request...")
+//   let config = {
+//     Accept: "application/json",
+//     method: "POST",
+//     headers: {
+//       "Content-type": "application/json"
+//     },
+//     body: JSON.stringify(args)
+//   };
+//   console.log("CONFIG: ", config);
+//   return config;
+// }
 
 module.exports = mutation;

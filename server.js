@@ -1,4 +1,5 @@
 const express = require("express");
+const { User } = require("./models/user");
 const expressGraphQL = require("express-graphql");
 const bodyParser = require("body-parser");
 

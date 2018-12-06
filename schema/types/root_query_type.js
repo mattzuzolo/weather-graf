@@ -12,6 +12,7 @@ const UserType = require("./user_type");
 //Models
 const User = mongoose.model("user");
 
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -19,6 +20,7 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { id: { type: GraphQLString } },
       resolve(parentValue, { id }){
+        console.log("LOOKING FOR USER:", id);
         return User.findById(id);
       }
     },

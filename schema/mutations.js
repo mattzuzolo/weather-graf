@@ -21,8 +21,10 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, args){
         let user = new User(args);
-        console.log("NEW USER INSTANCE TO SAVE", user);
+        console.log("USER TO SAVE:", user);
         user.save()
+          .then(response => console.log("SAVE RESPONSE:", response))
+          .catch(error => console.log("SAVE ERROR:", error));
       }
     },
   }

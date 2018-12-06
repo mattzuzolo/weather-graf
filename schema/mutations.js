@@ -19,14 +19,9 @@ const mutation = new GraphQLObjectType({
       args: {
         username: { type: GraphQLString },
         location: { type: GraphQLString },
-        savedLocations: { type: GraphQLList }
+        // savedLocations: { type: GraphQLString },
       },
       resolve(parentValue, args){
-        args = {...args, savedLocations: [{ 
-          name: "Charlestown, Rhode Island"},
-          { name: "Columbia, Missouri"},
-          { name: "Portland, Maine"}
-        ]}
         let user = new User(args);
         user.save()
           .then(response => console.log("SAVE RESPONSE:", response))
@@ -36,11 +31,13 @@ const mutation = new GraphQLObjectType({
     addSavedLocation: {
       type: UserType,
       args: {
-        name: { type: GraphQLString },
         userId: { type: GraphQLString },
+        name: { type: GraphQLString },
       },
-      resolve(parentValue, { name, userId }){
-        return User.addSavedLocation( name, userId );
+      resolve(parentValue, { userId, name }){
+        User.addSavedLocation( userId, name )
+          .then(response => console.log("response", response))
+          .catch(error => console.error(error));
       }
     }
   }

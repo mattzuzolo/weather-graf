@@ -8,6 +8,7 @@ const UserType = require("./types/user_type");
 const { 
   GraphQLObjectType,
   GraphQLString,
+  GraphQLList,
 } = graphql;
 
 const mutation = new GraphQLObjectType({
@@ -18,15 +19,30 @@ const mutation = new GraphQLObjectType({
       args: {
         username: { type: GraphQLString },
         location: { type: GraphQLString },
+        savedLocations: { type: GraphQLList }
       },
       resolve(parentValue, args){
+        args = {...args, savedLocations: [{ 
+          name: "Charlestown, Rhode Island"},
+          { name: "Columbia, Missouri"},
+          { name: "Portland, Maine"}
+        ]}
         let user = new User(args);
-        console.log("USER TO SAVE:", user);
         user.save()
           .then(response => console.log("SAVE RESPONSE:", response))
           .catch(error => console.log("SAVE ERROR:", error));
-      }
+      },
     },
+    addSavedLocation: {
+      type: UserType,
+      args: {
+        name: { type: GraphQLString },
+        userId: { type: GraphQLString },
+      },
+      resolve(parentValue, { name, userId }){
+        return User.addSavedLocation( name, userId );
+      }
+    }
   }
 })
 

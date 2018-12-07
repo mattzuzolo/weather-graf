@@ -20,14 +20,12 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { id: { type: GraphQLString } },
       resolve(parentValue, { id }){
-        console.log("LOOKING FOR USER:", id);
         return User.findById(id);
       }
     },
     users: {
       type: new GraphQLList(UserType),
       resolve() {
-        console.log("FINDING ALL USERS...");
         return User.find({});
       }
     },

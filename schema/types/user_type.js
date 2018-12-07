@@ -3,7 +3,7 @@ const graphql = require("graphql");
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQlList,
+  GraphQLList,
 } = graphql;
 
 const UserType = new GraphQLObjectType({
@@ -12,6 +12,10 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLString },
     username: { type: GraphQLString },
     location: { type: GraphQLString },
+    savedLocations: { 
+      type: GraphQLList,
+      resolve: (user) => (user.savedLocations)
+    }
   })
 });
 

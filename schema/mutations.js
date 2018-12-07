@@ -8,7 +8,6 @@ const UserType = require("./types/user_type");
 const { 
   GraphQLObjectType,
   GraphQLString,
-  GraphQLList,
 } = graphql;
 
 const mutation = new GraphQLObjectType({
@@ -19,7 +18,6 @@ const mutation = new GraphQLObjectType({
       args: {
         username: { type: GraphQLString },
         location: { type: GraphQLString },
-        // savedLocations: { type: GraphQLString },
       },
       resolve(parentValue, args){
         let user = new User(args);

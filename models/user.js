@@ -10,12 +10,21 @@ const UserSchema = new Schema({
 })
 
 UserSchema.statics.addSavedLocation = function(userId, name){
-    return this.findById(userId)
-      .then(user => {
-        user.savedLocations.push({name})
-        return user.save()
-      })
-      .catch(error => console.error(error));
+  return this.findById(userId)
+    .then(user => {
+      user.savedLocations.push({name})
+      return user.save()
+    })
+    .catch(error => console.error(error));
+}
+
+UserSchema.statics.removeSavedLocation = function(userId, locationId){
+  return this.findById(userId)
+    .then(user => {
+      let remainingLocations = user.savedLocations.filter(locationObj => locationObj.id !== locationId)
+      return user.updateOne({ id: user.id, savedLocations: remainingLocations });
+    })
+    .catch(error => console.error(error));
 }
 
 const User = mongoose.model("user", UserSchema);

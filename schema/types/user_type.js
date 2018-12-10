@@ -13,8 +13,10 @@ const UserType = new GraphQLObjectType({
     username: { type: GraphQLString },
     location: { type: GraphQLString },
     savedLocations: { 
-      type: GraphQLList,
-      resolve: (user) => (user.savedLocations)
+      type: GraphQLList(GraphQLString),
+      resolve: (user) => {
+        return user.savedLocations.map(savedLocation => savedLocation.name);
+      }
     }
   })
 });

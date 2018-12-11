@@ -1,10 +1,15 @@
+const mongoose = require("mongoose");
 const graphql = require("graphql");
+
 
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
 } = graphql;
+
+const SavedLocationType = require("./saved_location_type");
+const User = mongoose.model("user");
 
 const UserType = new GraphQLObjectType({
   name: "UserType",
@@ -13,9 +18,9 @@ const UserType = new GraphQLObjectType({
     username: { type: GraphQLString },
     location: { type: GraphQLString },
     savedLocations: { 
-      type: GraphQLList(GraphQLString),
-      resolve: (user) => {
-        return user.savedLocations.map(savedLocation => savedLocation.name);
+      type: GraphQLList(SavedLocationType),
+      resolve: (parentValue) => {
+        return User.findSavedLocations(parentValue.id);
       }
     }
   })

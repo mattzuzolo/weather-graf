@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-// const fetch = require("node-fetch");
 
 const User = mongoose.model("user");
+const SavedLocation = mongoose.model("savedLocation");
 const UserType = require("./types/user_type");
+// const SavedLocationType = mongoose.model("./types/saved_location_type");
 
 const { 
   GraphQLObjectType,

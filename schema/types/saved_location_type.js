@@ -13,6 +13,8 @@ const SavedLocationType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
+    latitude: { type: GraphQLString },
+    longitude: { type: GraphQLString },
   })
 });
 

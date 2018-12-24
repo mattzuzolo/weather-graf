@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const {SavedLocation} = require("./savedLocation");
+const { SavedLocation } = require("./savedLocation");
 
 const UserSchema = new Schema({
   username: String,
@@ -11,7 +11,6 @@ const UserSchema = new Schema({
     ref: "savedLocation",
   }],
 });
-
 
 
 UserSchema.statics.addSavedLocation = function(userId, name){

@@ -6,7 +6,7 @@ const SavedLocation = mongoose.model("savedLocation");
 const UserType = require("./types/user_type");
 // const SavedLocationType = mongoose.model("./types/saved_location_type");
 
-const { 
+const {
   GraphQLObjectType,
   GraphQLString,
 } = graphql;

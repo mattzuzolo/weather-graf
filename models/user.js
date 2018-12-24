@@ -13,9 +13,9 @@ const UserSchema = new Schema({
 });
 
 
-UserSchema.statics.addSavedLocation = function(userId, name){
+UserSchema.statics.addSavedLocation = function(userId, name, longitude, latitude){
 
-  let locationToSave = new SavedLocation({name});
+  let locationToSave = new SavedLocation({name, longitude, latitude});
   return this.findById(userId)
     .then(user => {
       user.savedLocations.push(locationToSave)

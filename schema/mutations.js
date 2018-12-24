@@ -33,8 +33,8 @@ const mutation = new GraphQLObjectType({
         userId: { type: GraphQLString },
         name: { type: GraphQLString },
       },
-      resolve(parentValue, { userId, name }){
-        User.addSavedLocation( userId, name )
+      resolve(parentValue, { userId, name, latitude, longitude }){
+        User.addSavedLocation( userId, name, latitude, longitude )
           .catch(error => console.error(error));
       }
     },

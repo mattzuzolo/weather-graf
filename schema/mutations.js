@@ -36,6 +36,7 @@ const mutation = new GraphQLObjectType({
         latitude: { type: GraphQLString },
       },
       resolve(parentValue, { userId, name, latitude, longitude }){
+        console.log("Adding saved location...", name)
         User.addSavedLocation( userId, name, latitude, longitude )
           .catch(error => console.error(error));
       }

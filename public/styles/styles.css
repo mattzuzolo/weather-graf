@@ -4,6 +4,15 @@
   
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
+  a:hover{
+    text-decoration: underline;
+  }
+
 body {
   padding: 2.5%;
   background: rgb(37,172,255);

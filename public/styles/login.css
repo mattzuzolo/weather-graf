@@ -1,0 +1,14 @@
+.div--login-container {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  
+  
+  padding-top: 5rem;
+  font-size: 3rem;
+  color: white;
+}

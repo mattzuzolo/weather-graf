@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/mattzuzolo/weather-graf#readme",
   "dependencies": {
+    "apollo-boost": "^0.1.23",
+    "apollo-client": "^2.4.8",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
